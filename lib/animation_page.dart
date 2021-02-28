@@ -74,6 +74,8 @@ class _AnimationPageState extends State<AnimationPage>
 class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+
+
     Path path = Path();
     Paint paint = Paint();
 

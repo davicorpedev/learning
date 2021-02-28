@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class AnimationPage extends StatefulWidget {
@@ -15,9 +13,17 @@ class _AnimationPageState extends State<AnimationPage>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
       vsync: this,
-    )..animateTo(1);
+    )
+      ..forward()
+      ..addListener(() {
+        if (_controller.value == 1) {
+          _controller.animateTo(0);
+        } else if (_controller.value == 0) {
+          _controller.animateTo(1);
+        }
+      });
   }
 
   @override
@@ -38,17 +44,18 @@ class _AnimationPageState extends State<AnimationPage>
           ),
           Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: AnimatedBuilder(
                   animation: _controller,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       _controller.animateBack(0);
                     },
                     child: Container(
-                      width: 200.0,
-                      height: 200.0,
+                      width: 100.0,
+                      height: 100.0,
                       decoration: BoxDecoration(
                         color: Colors.green,
                         shape: BoxShape.circle,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/animation/animation_page.dart';
 import 'package:learning_app/app.dart';
-import 'package:learning_app/provider/provider_page.dart';
-import 'package:learning_app/route/route_page.dart';
-import 'package:learning_app/routes.dart';
-import 'package:learning_app/stream/stream_page.dart';
+import 'package:learning_app/pages/animation_page.dart';
+import 'package:learning_app/pages/provider_page.dart';
+import 'package:learning_app/pages/route_page.dart';
+import 'package:learning_app/pages/stream_page.dart';
+import 'package:learning_app/routes/routes.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,7 +12,7 @@ class RouteGenerator {
 
     switch (settings.name) {
       case homePageRoute:
-        return MaterialPageRoute(builder: (_) => MyHomePage());
+        return MaterialPageRoute(builder: (_) => App());
       case providerPageRoute:
         return MaterialPageRoute(builder: (_) => ProviderPage());
       case streamPageRoute:

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/route/route_page.dart';
-import 'package:learning_app/routes.dart';
+import 'package:learning_app/pages/route_page.dart';
 
-class MyHomePage extends StatelessWidget {
+import 'package:learning_app/routes/routes.dart';
+
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

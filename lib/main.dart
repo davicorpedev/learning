@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/routes/route_generator.dart';
-import 'package:learning_app/routes/routes.dart';
+import 'package:learning_app/presentation/routes/route_generator.dart';
+import 'package:learning_app/presentation/routes/routes.dart';
 
 void main() {
   runApp(MyApp());

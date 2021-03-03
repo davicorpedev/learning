@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/pages/route_page.dart';
-
-import 'package:learning_app/routes/routes.dart';
+import 'package:learning_app/presentation/pages/routes/route_page.dart';
+import 'package:learning_app/presentation/routes/routes.dart';
 
 class App extends StatelessWidget {
   @override

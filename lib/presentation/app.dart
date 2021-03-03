@@ -42,7 +42,10 @@ class App extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     routePageRoute,
-                    arguments: RoutePageArguments("Titulo", "CUERPO"),
+                    arguments: RoutePageArguments(
+                      "Title",
+                      "Body passes by parameters",
+                    ),
                   );
                 },
               ),

@@ -11,7 +11,7 @@ class CounterController extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CounterProvider?>(
       create: (_) => provider,
-      child: Consumer<CounterProvider>(
+      child: Consumer<CounterProvider?>(
         builder: (_, provider, __) {
           return ListTile(
             title: Row(
@@ -21,10 +21,10 @@ class CounterController extends StatelessWidget {
                 ElevatedButton(
                   child: Icon(Icons.remove),
                   onPressed: () {
-                    provider.decrease();
+                    provider!.decrease();
                   },
                 ),
-                Text("${provider.counter}"),
+                Text("${provider!.counter}"),
                 ElevatedButton(
                   child: Icon(Icons.add),
                   onPressed: () {

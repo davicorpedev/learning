@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:learning_app/application/counter/counter_stream.dart';
 import 'package:learning_app/application/progress/progress_stream.dart';
@@ -73,5 +71,3 @@ class _StreamPageState extends State<StreamPage> {
     );
   }
 }
-
-

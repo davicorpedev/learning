@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/davic/Desktop/workSpaceFlutter/learning_app/lib/presentation/app.dart';
+import 'package:learning_app/presentation/app.dart';
 import 'package:learning_app/presentation/routes/routes.dart';
 import 'package:learning_app/presentation/pages/animation/animation_page.dart';
 import 'package:learning_app/presentation/pages/provider/provider_page.dart';

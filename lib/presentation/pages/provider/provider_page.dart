@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/application/counter/counter_provider.dart';
 import 'package:learning_app/presentation/pages/provider/widgets/counter_controller.dart';
-import 'package:provider/provider.dart';
 
 class ProviderPage extends StatefulWidget {
   @override
@@ -47,7 +46,3 @@ class _ProviderPageState extends State<ProviderPage> {
     );
   }
 }
-
-
-
-

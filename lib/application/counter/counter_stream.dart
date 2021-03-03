@@ -3,7 +3,7 @@ import 'dart:async';
 class CounterStream {
   int _count = 0;
 
-  Timer _timer;
+  late Timer _timer;
 
   final _controller = StreamController<int>();
 

@@ -12,7 +12,7 @@ class App extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             ListTile(
-              title: RaisedButton(
+              title: ElevatedButton(
                 child: Text("Providers"),
                 onPressed: () {
                   Navigator.pushNamed(context, providerPageRoute);
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: RaisedButton(
+              title: ElevatedButton(
                 child: Text("Streams"),
                 onPressed: () {
                   Navigator.pushNamed(context, streamPageRoute);
@@ -28,7 +28,7 @@ class App extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: RaisedButton(
+              title: ElevatedButton(
                 child: Text("Animations"),
                 onPressed: () {
                   Navigator.pushNamed(context, animationPageRoute);
@@ -36,7 +36,7 @@ class App extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: RaisedButton(
+              title: ElevatedButton(
                 child: Text("Routes"),
                 onPressed: () {
                   Navigator.pushNamed(

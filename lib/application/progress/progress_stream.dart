@@ -5,7 +5,7 @@ class ProgressStream {
 
   double _progress = 0;
 
-  Timer _timer;
+  late Timer _timer;
 
   final _controller = StreamController<double>();
 

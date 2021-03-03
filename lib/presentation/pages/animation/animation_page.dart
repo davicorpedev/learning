@@ -8,7 +8,7 @@ class AnimationPage extends StatefulWidget {
 
 class _AnimationPageState extends State<AnimationPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _AnimationPageState extends State<AnimationPage>
                       ),
                     ),
                   ),
-                  builder: (BuildContext context, Widget child) {
+                  builder: (BuildContext context, Widget? child) {
                     return Transform.scale(
                       scale: _controller.value,
                       child: child,

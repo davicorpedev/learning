@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/app.dart';
-import 'package:learning_app/pages/animation_page.dart';
-import 'package:learning_app/pages/provider_page.dart';
-import 'package:learning_app/pages/route_page.dart';
-import 'package:learning_app/pages/stream_page.dart';
-import 'package:learning_app/routes/routes.dart';
+import 'file:///C:/Users/davic/Desktop/workSpaceFlutter/learning_app/lib/presentation/app.dart';
+import 'package:learning_app/presentation/routes/routes.dart';
+import 'package:learning_app/presentation/pages/animation/animation_page.dart';
+import 'package:learning_app/presentation/pages/provider/provider_page.dart';
+import 'package:learning_app/presentation/pages/routes/route_page.dart';
+import 'package:learning_app/presentation/pages/stream/stream_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -43,10 +43,10 @@ class RouteGenerator {
 }
 
 /*var routes = <String, WidgetBuilder>{
-    "hello": (ctx) => Hello(settings.arguments),
-    "other": (ctx) => SomeWidget(),
-  };
+  "hello": (ctx) => Hello(settings.arguments),
+  "other": (ctx) => SomeWidget(),
+};
 
-  WidgetBuilder builder = routes[settings.name];
+WidgetBuilder builder = routes[settings.name];
 
-  return MaterialPageRoute(builder: (ctx) => builder(ctx));*/
+return MaterialPageRoute(builder: (ctx) => builder(ctx));*/

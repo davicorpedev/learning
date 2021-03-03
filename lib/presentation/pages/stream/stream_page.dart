@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:learning_app/application/counter/counter_stream.dart';
+import 'package:learning_app/application/progress/progress_stream.dart';
 
 class StreamPage extends StatefulWidget {
   @override
@@ -8,13 +10,13 @@ class StreamPage extends StatefulWidget {
 }
 
 class _StreamPageState extends State<StreamPage> {
-  final number = Number();
-  final progress = Progress();
+  final counterStream = CounterStream();
+  final progressStream = ProgressStream();
 
   @override
   void dispose() {
-    number.close();
-    progress.close();
+    counterStream.close();
+    progressStream.close();
 
     super.dispose();
   }
@@ -33,7 +35,7 @@ class _StreamPageState extends State<StreamPage> {
             ),
           ),
           StreamBuilder<int>(
-            stream: number.stream,
+            stream: counterStream.stream,
             builder: (_, snapshot) {
               return ListTile(
                 title: Text(
@@ -51,7 +53,7 @@ class _StreamPageState extends State<StreamPage> {
             ),
           ),
           StreamBuilder<double>(
-            stream: progress.stream,
+            stream: progressStream.stream,
             builder: (_, snapshot) {
               return ListTile(
                 title: LinearProgressIndicator(
@@ -65,73 +67,11 @@ class _StreamPageState extends State<StreamPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.delete),
         onPressed: () {
-          number.clear();
+          counterStream.clear();
         },
       ),
     );
   }
 }
 
-class Number {
-  int _count = 0;
 
-  Timer _timer;
-
-  final _controller = StreamController<int>();
-
-  Number() {
-    _sink.add(_count);
-
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      _count++;
-      _sink.add(_count);
-    });
-  }
-
-  Stream<int> get stream => _controller.stream;
-
-  StreamSink<int> get _sink => _controller.sink;
-
-  void clear() {
-    _count = 0;
-    _sink.add(0);
-  }
-
-  void close() {
-    _controller.close();
-    _timer.cancel();
-  }
-}
-
-class Progress {
-  static const double max = 1;
-
-  double _progress = 0;
-
-  Timer _timer;
-
-  final _controller = StreamController<double>();
-
-  Progress() {
-    _sink.add(_progress);
-
-    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-      if (_progress > max) {
-        _progress = 0;
-      } else {
-        _progress = _progress + 0.01;
-      }
-
-      _sink.add(_progress);
-    });
-  }
-
-  Stream<double> get stream => _controller.stream;
-
-  StreamSink<double> get _sink => _controller.sink;
-
-  void close() {
-    _controller.close();
-    _timer.cancel();
-  }
-}

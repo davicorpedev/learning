@@ -43,8 +43,8 @@ class App extends StatelessWidget {
                     context,
                     routePageRoute,
                     arguments: RoutePageArguments(
-                      "Title",
-                      "Body passes by parameters",
+                      title: "Title",
+                      body: "Body passes by parameters",
                     ),
                   );
                 },

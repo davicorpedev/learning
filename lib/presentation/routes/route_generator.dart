@@ -22,7 +22,10 @@ class RouteGenerator {
       case routePageRoute:
         if (args is RoutePageArguments) {
           return MaterialPageRoute(
-            builder: (_) => RoutePage(arguments: args),
+            builder: (_) => RoutePage(
+              title: args.title,
+              body: args.body,
+            ),
           );
         }
         break;

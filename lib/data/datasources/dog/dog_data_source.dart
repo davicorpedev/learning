@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:learning_app/data/core/exceptions.dart';
+import 'package:learning_app/data/core/error/exceptions.dart';
 import 'package:learning_app/data/model/dog_model.dart';
 
 class DogDataSource {

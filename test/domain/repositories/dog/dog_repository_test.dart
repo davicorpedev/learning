@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:learning_app/data/core/exceptions.dart';
+import 'package:learning_app/data/core/error/exceptions.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
 import 'package:learning_app/data/model/dog_model.dart';
-import 'package:learning_app/domain/core/failures.dart';
+import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -26,7 +26,7 @@ void main() {
     final tDogModel = DogModel(url: "test");
     final tDog = tDogModel;
 
-    test("should return a Dog", () async {
+    test("should return a Dog if the request is successful", () async {
       when(dataSource.getRandomDog()).thenAnswer((_) async => tDogModel);
 
       final result = await repository.getRandomDog();
@@ -45,7 +45,7 @@ void main() {
 
     test("should return a NetworkFailure when the user has no internet",
         () async {
-      when(dataSource.getRandomDog()).thenThrow(SocketException("test"));
+      when(dataSource.getRandomDog()).thenThrow(SocketException(""));
 
       final result = await repository.getRandomDog();
 

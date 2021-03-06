@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:learning_app/data/core/exceptions.dart';
+import 'package:learning_app/data/core/error/exceptions.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
-import 'package:learning_app/domain/core/failures.dart';
+import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:learning_app/domain/entities/dog.dart';
 
 class DogRepository {

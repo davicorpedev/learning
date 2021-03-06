@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/presentation/app.dart';
 import 'package:learning_app/presentation/pages/animation/animation_page.dart';
+import 'package:learning_app/presentation/pages/login/login_page.dart';
 import 'package:learning_app/presentation/pages/provider/provider_page.dart';
 import 'package:learning_app/presentation/pages/random_dog/random_dog_page.dart';
 import 'package:learning_app/presentation/pages/routes/route_page.dart';
@@ -23,15 +24,14 @@ class RouteGenerator {
       case routePageRoute:
         if (args is RoutePageArguments) {
           return MaterialPageRoute(
-            builder: (_) => RoutePage(
-              title: args.title,
-              body: args.body,
-            ),
+            builder: (_) => RoutePage(title: args.title, body: args.body),
           );
         }
         break;
-      case routePageRandomDog:
+      case randomDogPageRoute:
         return MaterialPageRoute(builder: (_) => RandomDogPage());
+      case loginPageRoute:
+        return MaterialPageRoute(builder: (_) => LoginPage());
     }
 
     return _errorRoute();

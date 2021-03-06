@@ -54,7 +54,15 @@ class App extends StatelessWidget {
               title: ElevatedButton(
                 child: Text("Random dog"),
                 onPressed: () {
-                  Navigator.pushNamed(context, routePageRandomDog);
+                  Navigator.pushNamed(context, randomDogPageRoute);
+                },
+              ),
+            ),
+            ListTile(
+              title: ElevatedButton(
+                child: Text("Login"),
+                onPressed: () {
+                  Navigator.pushNamed(context, loginPageRoute);
                 },
               ),
             ),

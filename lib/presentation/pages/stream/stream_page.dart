@@ -27,7 +27,7 @@ class _StreamPageState extends State<StreamPage> {
         children: [
           ListTile(
             title: Text(
-              "TIMER COUNT STREAM",
+              "COUNTER STREAM",
               style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.center,
             ),

@@ -43,10 +43,18 @@ class App extends StatelessWidget {
                     context,
                     routePageRoute,
                     arguments: RoutePageArguments(
-                      title: "Title",
-                      body: "Body passes by parameters",
+                      title: "Title passed by parameter",
+                      body: "Body passed by parameter",
                     ),
                   );
+                },
+              ),
+            ),
+            ListTile(
+              title: ElevatedButton(
+                child: Text("Random dog"),
+                onPressed: () {
+                  Navigator.pushNamed(context, routePageRandomDog);
                 },
               ),
             ),

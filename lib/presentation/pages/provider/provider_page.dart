@@ -23,7 +23,7 @@ class _ProviderPageState extends State<ProviderPage> {
           children: [
             ListTile(
               title: Text(
-                "COUNTER PROVIDER EXAMPLE",
+                "COUNTER PROVIDER",
                 style: Theme.of(context).textTheme.headline6,
                 textAlign: TextAlign.center,
               ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/presentation/app.dart';
-import 'package:learning_app/presentation/routes/routes.dart';
 import 'package:learning_app/presentation/pages/animation/animation_page.dart';
 import 'package:learning_app/presentation/pages/provider/provider_page.dart';
+import 'package:learning_app/presentation/pages/random_dog/random_dog_page.dart';
 import 'package:learning_app/presentation/pages/routes/route_page.dart';
 import 'package:learning_app/presentation/pages/stream/stream_page.dart';
+import 'package:learning_app/presentation/routes/routes.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,6 +30,8 @@ class RouteGenerator {
           );
         }
         break;
+      case routePageRandomDog:
+        return MaterialPageRoute(builder: (_) => RandomDogPage());
     }
 
     return _errorRoute();

@@ -10,18 +10,18 @@ class RandomDogPage extends StatefulWidget {
 }
 
 class _RandomDogPageState extends State<RandomDogPage> {
-  late final DogCubit dogCubit;
+  late final DogCubit cubit;
 
   @override
   void initState() {
-    dogCubit = sl<DogCubit>()..getRandomDog();
+    cubit = sl<DogCubit>()..getRandomDog();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    dogCubit.close();
+    cubit.close();
     super.dispose();
   }
 
@@ -32,12 +32,12 @@ class _RandomDogPageState extends State<RandomDogPage> {
         title: Text("Random dog"),
         actions: [
           BlocBuilder<DogCubit, DogState>(
-            bloc: dogCubit,
+            bloc: cubit,
             builder: (_, state) {
               return IconButton(
                 icon: Icon(Icons.update),
                 onPressed: () {
-                  dogCubit.getRandomDog();
+                  cubit.getRandomDog();
                 },
               );
             },
@@ -46,7 +46,7 @@ class _RandomDogPageState extends State<RandomDogPage> {
       ),
       body: Center(
         child: BlocBuilder<DogCubit, DogState>(
-          bloc: dogCubit,
+          bloc: cubit,
           builder: (_, state) {
             if (state is DogLoading) {
               return CircularProgressIndicator();

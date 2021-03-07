@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learning_app/application/auth/auth_cubit.dart';
+import 'package:learning_app/application/login/form/login_form_cubit.dart';
 import 'package:learning_app/application/login/login_cubit.dart';
-import 'package:learning_app/domain/repositories/user/user_repository.dart';
+import 'package:learning_app/injection_container.dart';
+import 'package:learning_app/presentation/pages/auth/login/widgets/login_button.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,9 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final formKey = GlobalKey<FormState>();
-
-  final cubit = LoginCubit(userRepository: UserRepository());
+  final cubit = sl<LoginCubit>();
 
   late final TextEditingController emailController;
   late final TextEditingController passController;
@@ -37,61 +36,49 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Login")),
-      body: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            ListTile(
-              title: TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(labelText: "Email"),
-                validator: (value) {
-                  if (value!.isEmpty) return "Add email";
-                },
+      body: BlocProvider<LoginFormCubit>(
+        create: (_) => LoginFormCubit(),
+        child: BlocConsumer<LoginFormCubit, LoginFormState>(
+          listener: (_, state) {
+            if (state is LoginFormCorrect) {
+              cubit.login(state.email, state.password);
+            }
+          },
+          builder: (context, state) {
+            return Form(
+              key: BlocProvider.of<LoginFormCubit>(context).formKey,
+              child: Column(
+                children: [
+                  ListTile(
+                    title: TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(labelText: "Email"),
+                      validator: (value) {
+                        if (value!.isEmpty) return "Add email";
+                      },
+                      onChanged: (val) {
+                        BlocProvider.of<LoginFormCubit>(context).email = val;
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    title: TextFormField(
+                      controller: passController,
+                      decoration: InputDecoration(labelText: "Password"),
+                      validator: (value) {
+                        if (value!.isEmpty) return "Add password";
+                      },
+                      onChanged: (val) {
+                        BlocProvider.of<LoginFormCubit>(context).password = val;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  LoginButton(cubit: cubit),
+                ],
               ),
-            ),
-            ListTile(
-              title: TextFormField(
-                controller: passController,
-                decoration: InputDecoration(labelText: "Password"),
-                validator: (value) {
-                  if (value!.isEmpty) return "Add password";
-                },
-              ),
-            ),
-            SizedBox(height: 16),
-            BlocConsumer<LoginCubit, LoginState>(
-              bloc: cubit,
-              listener: (_, state) {
-                if (state is LoginCorrect) {
-                  BlocProvider.of<AuthCubit>(context).saveUser(state.authUser);
-                } else if (state is LoginFailure) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(state.message)));
-                }
-              },
-              builder: (_, state) {
-                if (state is LoginLoading) {
-                  return CircularProgressIndicator();
-                }
-
-                return ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      cubit.login(emailController.text, passController.text);
-                    }
-                  },
-                  child: Text("Sign in"),
-                );
-              },
-            ),
-            /*TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, registerPageRoute);
-              },
-              child: Text("Sign up"),
-            ),*/
-          ],
+            );
+          },
         ),
       ),
     );

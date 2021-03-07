@@ -1,8 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:learning_app/application/auth/auth_cubit.dart';
 import 'package:learning_app/application/dog/dog_cubit.dart';
+import 'package:learning_app/application/login/login_cubit.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
 import 'package:learning_app/domain/core/extension_checker.dart';
+import 'package:learning_app/domain/repositories/user/user_repository.dart';
 
 import 'domain/repositories/dog/dog_repository.dart';
 
@@ -20,6 +23,17 @@ Future<void> init() async {
 
   //DataSource
   sl.registerLazySingleton<DogDataSource>(() => DogDataSource(client: sl()));
+
+  ///Auth
+  //Cubit
+  sl.registerFactory<AuthCubit>(() => AuthCubit());
+
+  //Repository
+  sl.registerLazySingleton<UserRepository>(() => UserRepository());
+
+  ///Login
+  //Cubit
+  sl.registerFactory<LoginCubit>(() => LoginCubit(userRepository: sl()));
 
   ///Extension checker
   sl.registerLazySingleton<ExtensionChecker>(() => ExtensionChecker());

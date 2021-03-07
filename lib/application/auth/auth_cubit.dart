@@ -6,12 +6,10 @@ import 'package:meta/meta.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-
-
   AuthCubit() : super(AppStarted());
 
   Future<void> saveUser(AuthUser authUser) async {
-    emit(UserLoggedIn(authUser));
+    emit(UserLoggedIn(authUser: authUser));
   }
 
   Future<void> removeUser() async {

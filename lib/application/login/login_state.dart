@@ -14,7 +14,7 @@ class LoginLoading extends LoginState {}
 class LoginCorrect extends LoginState {
   final AuthUser authUser;
 
-  LoginCorrect(this.authUser);
+  LoginCorrect({required this.authUser});
 
   @override
   List<Object> get props => [authUser];

@@ -7,7 +7,7 @@ class UserRepository {
     String email,
     String password,
   ) async {
-    //return Left(ServerFailure());
+    //return Left(LoginFailure());
     return Right(AuthUser(token: "token"));
   }
 }

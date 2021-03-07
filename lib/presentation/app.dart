@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/application/auth/auth_cubit.dart';
+import 'package:learning_app/injection_container.dart';
 import 'package:learning_app/presentation/routes/route_generator.dart';
 import 'package:learning_app/presentation/routes/routes.dart';
 
@@ -11,8 +12,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
+    return BlocProvider<AuthCubit>(
+      create: (context) => sl<AuthCubit>(),
       child: MaterialApp(
         title: 'Flutter Demo',
         initialRoute: homePageRoute,

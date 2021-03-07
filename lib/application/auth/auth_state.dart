@@ -11,7 +11,7 @@ class AppStarted extends AuthState {}
 class UserLoggedIn extends AuthState {
   final AuthUser authUser;
 
-  UserLoggedIn(this.authUser);
+  UserLoggedIn({required this.authUser});
 
   @override
   List<Object> get props => [authUser];

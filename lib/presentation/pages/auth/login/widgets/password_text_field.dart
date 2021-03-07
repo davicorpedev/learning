@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/application/login/form/login_form_cubit.dart';
 
-class PassTextField extends StatefulWidget {
+class PasswordTextField extends StatefulWidget {
   @override
-  _PassTextFieldState createState() => _PassTextFieldState();
+  _PasswordTextFieldState createState() => _PasswordTextFieldState();
 }
 
-class _PassTextFieldState extends State<PassTextField> {
-  final TextEditingController passController = TextEditingController();
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
-    passController.dispose();
+    passwordController.dispose();
 
     super.dispose();
   }
@@ -21,7 +21,7 @@ class _PassTextFieldState extends State<PassTextField> {
   Widget build(BuildContext context) {
     return ListTile(
       title: TextFormField(
-        controller: passController,
+        controller: passwordController,
         decoration: InputDecoration(labelText: "Password"),
         validator: (value) {
           if (value!.isEmpty) return "Add password";

@@ -11,24 +11,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final cubit = sl<LoginCubit>();
-
-  late final TextEditingController emailController;
-  late final TextEditingController passController;
-
-  @override
-  void initState() {
-    emailController = TextEditingController();
-    passController = TextEditingController();
-    super.initState();
-  }
+  final loginCubit = sl<LoginCubit>();
 
   @override
   void dispose() {
-    cubit.close();
+    loginCubit.close();
 
-    passController.dispose();
-    emailController.dispose();
     super.dispose();
   }
 
@@ -41,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         child: BlocConsumer<LoginFormCubit, LoginFormState>(
           listener: (_, state) {
             if (state is LoginFormCorrect) {
-              cubit.login(state.email, state.password);
+              loginCubit.login(state.email, state.password);
             }
           },
           builder: (context, state) {
@@ -49,32 +37,8 @@ class _LoginPageState extends State<LoginPage> {
               key: BlocProvider.of<LoginFormCubit>(context).formKey,
               child: Column(
                 children: [
-                  ListTile(
-                    title: TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(labelText: "Email"),
-                      validator: (value) {
-                        if (value!.isEmpty) return "Add email";
-                      },
-                      onChanged: (val) {
-                        BlocProvider.of<LoginFormCubit>(context).email = val;
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    title: TextFormField(
-                      controller: passController,
-                      decoration: InputDecoration(labelText: "Password"),
-                      validator: (value) {
-                        if (value!.isEmpty) return "Add password";
-                      },
-                      onChanged: (val) {
-                        BlocProvider.of<LoginFormCubit>(context).password = val;
-                      },
-                    ),
-                  ),
                   SizedBox(height: 16),
-                  LoginButton(cubit: cubit),
+                  LoginButton(cubit: loginCubit),
                 ],
               ),
             );

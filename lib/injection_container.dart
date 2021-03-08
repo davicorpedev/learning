@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:learning_app/application/auth/auth_cubit.dart';
 import 'package:learning_app/application/dog/dog_cubit.dart';
+import 'package:learning_app/application/login/form/login_form_cubit.dart';
 import 'package:learning_app/application/login/login_cubit.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
 import 'package:learning_app/domain/core/extension_checker.dart';
@@ -34,6 +35,10 @@ Future<void> init() async {
   ///Login
   //Cubit
   sl.registerFactory<LoginCubit>(() => LoginCubit(userRepository: sl()));
+
+  ///LoginForm
+  //Cubit
+  sl.registerFactory<LoginFormCubit>(() => LoginFormCubit());
 
   ///Extension checker
   sl.registerLazySingleton<ExtensionChecker>(() => ExtensionChecker());

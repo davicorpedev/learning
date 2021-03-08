@@ -13,25 +13,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginCubit = sl<LoginCubit>();
-
-  @override
-  void dispose() {
-    loginCubit.close();
-
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Login")),
-      body: BlocProvider<LoginFormCubit>(
-        create: (_) => LoginFormCubit(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<LoginFormCubit>(create: (_) => sl<LoginFormCubit>()),
+          BlocProvider<LoginCubit>(create: (_) => sl<LoginCubit>()),
+        ],
         child: BlocConsumer<LoginFormCubit, LoginFormState>(
-          listener: (_, state) {
+          listener: (context, state) {
             if (state is LoginFormCorrect) {
-              loginCubit.login(state.email, state.password);
+              BlocProvider.of<LoginCubit>(context)
+                  .login(state.email, state.password);
             }
           },
           builder: (context, state) {
@@ -42,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                   EmailTextField(),
                   PasswordTextField(),
                   SizedBox(height: 16),
-                  LoginButton(cubit: loginCubit),
+                  LoginButton(),
                 ],
               ),
             );

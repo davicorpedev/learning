@@ -13,7 +13,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   void dispose() {
     passwordController.dispose();
-
     super.dispose();
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/application/auth/auth_cubit.dart';
 import 'package:learning_app/injection_container.dart';
+import 'package:learning_app/presentation/internalization_common.dart';
 import 'package:learning_app/presentation/routes/route_generator.dart';
 import 'package:learning_app/presentation/routes/routes.dart';
 
@@ -12,15 +13,25 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-      create: (context) => sl<AuthCubit>(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        initialRoute: homePageRoute,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        navigatorKey: _navigatorKey,
-        builder: (context, child) {
-          return BlocListener<AuthCubit, AuthState>(
+    return MaterialApp(
+      title: 'Learning App',
+      initialRoute: homePageRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: _navigatorKey,
+      localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        AppLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('es', ''),
+      ],
+      builder: (context, child) {
+        return BlocProvider<AuthCubit>(
+          create: (context) => sl<AuthCubit>(),
+          child: BlocListener<AuthCubit, AuthState>(
             child: child,
             listener: (_, state) {
               if (state is UserLoggedOut) {
@@ -30,12 +41,12 @@ class App extends StatelessWidget {
                 _navigator!.pushNamed(userDetailsPageRoute);
               }
             },
-          );
-        },
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+          ),
+        );
+      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );
   }

@@ -77,6 +77,14 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
+            ListTile(
+              title: ElevatedButton(
+                child: Text("Internalization"),
+                onPressed: () {
+                  Navigator.pushNamed(context, internalizationPageRoute);
+                },
+              ),
+            ),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:learning_app/presentation/pages/animation/animation_page.dart';
 import 'package:learning_app/presentation/pages/auth/login/login_page.dart';
 import 'package:learning_app/presentation/pages/auth/user_details/user_details_page.dart';
 import 'package:learning_app/presentation/pages/home/home_page.dart';
+import 'package:learning_app/presentation/pages/internalization/internaliaztion_page.dart';
 import 'package:learning_app/presentation/pages/provider/provider_page.dart';
 import 'package:learning_app/presentation/pages/random_dog/random_dog_page.dart';
 import 'package:learning_app/presentation/pages/routes/route_page.dart';
@@ -56,6 +57,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => UserDetailsPage(),
           settings: RouteSettings(name: userDetailsPageRoute),
+        );
+      case internalizationPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => InternalizationPage(),
+          settings: RouteSettings(name: internalizationPageRoute),
         );
     }
 

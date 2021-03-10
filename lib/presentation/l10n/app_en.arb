@@ -1,0 +1,20 @@
+{
+  "hello": "Hello",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "screenText": "This screen is supported in different languages",
+  "@screenText": {
+    "description": "A text that explains that this text supports different languages"
+  },
+  "tryYourself": "Try changing the language of your phone to {language}",
+  "@tryYourself": {
+    "description": "A invite to try the internalization",
+    "placeholders": {
+      "language": {
+        "type": "String",
+        "example": "Spanish"
+      }
+    }
+  }
+}

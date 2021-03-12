@@ -5,11 +5,13 @@ import 'package:learning_app/application/dog/dog_cubit.dart';
 import 'package:learning_app/application/login/form/login_form_cubit.dart';
 import 'package:learning_app/application/login/login_cubit.dart';
 import 'package:learning_app/application/media/media_cubit.dart';
+import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_source.dart';
+import 'package:learning_app/data/datasources/auth_user/auth_user_remote_data_source.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
 import 'package:learning_app/domain/core/extension_checker.dart';
-import 'package:learning_app/domain/repositories/user/user_repository.dart';
-
-import 'domain/repositories/dog/dog_repository.dart';
+import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.dart';
+import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -31,11 +33,25 @@ Future<void> init() async {
   sl.registerFactory<AuthCubit>(() => AuthCubit());
 
   //Repository
-  sl.registerLazySingleton<UserRepository>(() => UserRepository());
+  sl.registerLazySingleton<AuthUserRepository>(() => AuthUserRepository(
+        remoteDataSource: sl(),
+        localDataSource: sl(),
+      ));
+
+  //DataSource
+  sl.registerLazySingleton<AuthUserRemoteDataSource>(
+      () => AuthUserRemoteDataSource(
+            client: sl(),
+          ));
+
+  sl.registerLazySingleton<AuthUserLocalDataSource>(
+      () => AuthUserLocalDataSource(
+            sharedPreferences: sl(),
+          ));
 
   ///Login
   //Cubit
-  sl.registerFactory<LoginCubit>(() => LoginCubit(userRepository: sl()));
+  sl.registerFactory<LoginCubit>(() => LoginCubit(authUserRepository: sl()));
 
   ///LoginForm
   //Cubit
@@ -49,5 +65,8 @@ Future<void> init() async {
   sl.registerLazySingleton<ExtensionChecker>(() => ExtensionChecker());
 
   ///External
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
+
   sl.registerLazySingleton(() => http.Client());
 }

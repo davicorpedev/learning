@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:learning_app/application/login/login_cubit.dart';
-import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:learning_app/domain/entities/auth_user.dart';
 import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.dart';
 import 'package:mockito/annotations.dart';
@@ -37,24 +36,6 @@ void main() {
         expectLater(cubit, emitsInOrder(expected));
 
         cubit.login("email", "password");
-      },
-    );
-
-    test(
-      "should emit [LoginLoading, LoginFailure] when "
-      "email and/or password are NOT valid",
-      () {
-        when(mockAuthUserRepository.authenticate(any, any))
-            .thenAnswer((realInvocation) async => Left(LoginFailure()));
-
-        final expected = [
-          LoginLoading(),
-          LoginError(message: LOGIN_FAILURE_MESSAGE),
-        ];
-
-        expectLater(cubit, emitsInOrder(expected));
-
-        cubit.login("", "");
       },
     );
   });

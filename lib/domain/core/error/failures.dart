@@ -3,7 +3,8 @@ import 'package:equatable/equatable.dart';
 const String SERVER_FAILURE_MESSAGE = "Server Failure";
 const String NETWORK_FAILURE_MESSAGE = "Network Failure";
 const String LOGIN_FAILURE_MESSAGE = "Network Failure";
-const String MEDIA_FAILURE_MESSAGE = "Unknown media format";
+const String MEDIA_FAILURE_MESSAGE = "Unknown Media Format Failure";
+const String CACHE_FAILURE_MESSAGE = "Cache Failure";
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {
@@ -13,6 +14,8 @@ String mapFailureToMessage(Failure failure) {
       return NETWORK_FAILURE_MESSAGE;
     case LoginFailure:
       return LOGIN_FAILURE_MESSAGE;
+    case CacheFailure:
+      return CACHE_FAILURE_MESSAGE;
     default:
       return 'Unexpected Error';
   }
@@ -28,3 +31,5 @@ class ServerFailure extends Failure {}
 class NetworkFailure extends Failure {}
 
 class LoginFailure extends Failure {}
+
+class CacheFailure extends Failure {}

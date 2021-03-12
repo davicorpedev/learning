@@ -30,7 +30,7 @@ class App extends StatelessWidget {
       ],
       builder: (context, child) {
         return BlocProvider<AuthCubit>(
-          create: (context) => sl<AuthCubit>(),
+          create: (context) => sl<AuthCubit>()..getUser(),
           child: BlocListener<AuthCubit, AuthState>(
             child: child,
             listener: (_, state) {

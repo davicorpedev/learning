@@ -23,11 +23,33 @@ class AuthUserRepository {
     try {
       final result = await remoteDataSource.authenticate(email, password);
 
+      localDataSource.cacheUser(result);
+
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());
     } on SocketException {
       return Left(NetworkFailure());
+    }
+  }
+
+  Future<Either<Failure, AuthUser>> getUser() async {
+    try {
+      final result = await localDataSource.getUser();
+
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> removeUser() async {
+    try {
+      final result = await localDataSource.removeUser();
+
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
     }
   }
 }

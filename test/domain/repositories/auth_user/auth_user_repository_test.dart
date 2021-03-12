@@ -11,7 +11,7 @@ import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'user_repository_test.mocks.dart';
+import 'auth_user_repository_test.mocks.dart';
 
 @GenerateMocks([AuthUserLocalDataSource, AuthUserRemoteDataSource])
 void main() {

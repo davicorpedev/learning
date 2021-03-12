@@ -30,7 +30,7 @@ Future<void> init() async {
 
   ///Auth
   //Cubit
-  sl.registerFactory<AuthCubit>(() => AuthCubit());
+  sl.registerFactory<AuthCubit>(() => AuthCubit(authUserRepository: sl()));
 
   //Repository
   sl.registerLazySingleton<AuthUserRepository>(() => AuthUserRepository(

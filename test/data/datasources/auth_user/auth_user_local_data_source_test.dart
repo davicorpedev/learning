@@ -3,7 +3,7 @@ import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_sou
 import 'package:mockito/annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'user_local_data_source_test.mocks.dart';
+import 'auth_user_local_data_source_test.mocks.dart';
 
 @GenerateMocks([SharedPreferences])
 void main() {

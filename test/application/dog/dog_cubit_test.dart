@@ -14,13 +14,13 @@ import 'dog_cubit_test.mocks.dart';
 void main() {
   late MockDogRepository mockDogRepository;
   late MockExtensionChecker mockExtensionChecker;
-  late DogCubit dogCubit;
+  late DogCubit cubit;
 
   setUp(() {
     mockDogRepository = MockDogRepository();
     mockExtensionChecker = MockExtensionChecker();
 
-    dogCubit = DogCubit(
+    cubit = DogCubit(
       repository: mockDogRepository,
       extensionChecker: mockExtensionChecker,
     );
@@ -43,9 +43,9 @@ void main() {
         DogImageLoaded(dog: tDog),
       ];
 
-      expectLater(dogCubit, emitsInOrder(expected));
+      expectLater(cubit, emitsInOrder(expected));
 
-      dogCubit.getRandomDog();
+      cubit.getRandomDog();
     });
 
     test(
@@ -62,9 +62,9 @@ void main() {
         DogVideoLoaded(dog: tDog),
       ];
 
-      expectLater(dogCubit, emitsInOrder(expected));
+      expectLater(cubit, emitsInOrder(expected));
 
-      dogCubit.getRandomDog();
+      cubit.getRandomDog();
     });
 
     test(
@@ -78,12 +78,12 @@ void main() {
 
       final expected = [
         DogLoading(),
-        DogError(message: "Unknown media format"),
+        DogError(message: MEDIA_FAILURE_MESSAGE),
       ];
 
-      expectLater(dogCubit, emitsInOrder(expected));
+      expectLater(cubit, emitsInOrder(expected));
 
-      dogCubit.getRandomDog();
+      cubit.getRandomDog();
     });
 
     test("should emit [DogLoading, DogError] when the request fails", () {
@@ -95,9 +95,9 @@ void main() {
         DogError(message: NETWORK_FAILURE_MESSAGE),
       ];
 
-      expectLater(dogCubit, emitsInOrder(expected));
+      expectLater(cubit, emitsInOrder(expected));
 
-      dogCubit.getRandomDog();
+      cubit.getRandomDog();
     });
   });
 }

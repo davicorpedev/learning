@@ -16,7 +16,7 @@ class _LoginButtonState extends State<LoginButton> {
       listener: (_, state) {
         if (state is LoginCorrect) {
           BlocProvider.of<AuthCubit>(context).saveUser(state.authUser);
-        } else if (state is LoginFailure) {
+        } else if (state is LoginError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
         }

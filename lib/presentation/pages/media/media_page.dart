@@ -58,6 +58,7 @@ class _MediaPageState extends State<MediaPage> {
     if (state is VideoLoaded) {
       return MediaVideoPlayer(file: state.file);
     }
+
     return Container();
   }
 }

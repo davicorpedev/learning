@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 const String SERVER_FAILURE_MESSAGE = "Server Failure";
 const String NETWORK_FAILURE_MESSAGE = "Network Failure";
 const String LOGIN_FAILURE_MESSAGE = "Network Failure";
+const String MEDIA_FAILURE_MESSAGE = "Unknown media format";
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {

@@ -31,7 +31,7 @@ class DogCubit extends Cubit<DogState> {
         } else if (type == Type.video) {
           emit(DogVideoLoaded(dog: dog));
         } else {
-          emit(DogError(message: "Unknown media format"));
+          emit(DogError(message: MEDIA_FAILURE_MESSAGE));
         }
       },
     );

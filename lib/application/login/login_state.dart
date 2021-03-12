@@ -20,10 +20,10 @@ class LoginCorrect extends LoginState {
   List<Object> get props => [authUser];
 }
 
-class LoginFailure extends LoginState {
+class LoginError extends LoginState {
   final String message;
 
-  const LoginFailure({required this.message});
+  const LoginError({required this.message});
 
   @override
   List<Object> get props => [message];

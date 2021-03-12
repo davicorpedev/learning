@@ -7,6 +7,7 @@ part 'login_form_state.dart';
 
 class LoginFormCubit extends Cubit<LoginFormState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  
   String email = "";
   String password = "";
 

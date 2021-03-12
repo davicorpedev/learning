@@ -26,8 +26,6 @@ class DogCubit extends Cubit<DogState> {
       (dog) async {
         final type = await extensionChecker.check(dog.url);
 
-        print(type);
-
         if (type == Type.image) {
           emit(DogImageLoaded(dog: dog));
         } else if (type == Type.video) {

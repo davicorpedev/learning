@@ -85,6 +85,14 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
+            ListTile(
+              title: ElevatedButton(
+                child: Text("Media picker"),
+                onPressed: () {
+                  Navigator.pushNamed(context, mediaPageRoute);
+                },
+              ),
+            ),
           ],
         ),
       ),

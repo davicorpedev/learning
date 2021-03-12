@@ -7,3 +7,4 @@ const String randomDogPageRoute = '/random_dog';
 const String loginPageRoute = '/login';
 const String userDetailsPageRoute = '/userDetails';
 const String internalizationPageRoute = '/internalization';
+const String mediaPageRoute = '/media';

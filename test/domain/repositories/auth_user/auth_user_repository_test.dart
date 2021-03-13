@@ -40,6 +40,9 @@ void main() {
       when(mockAuthUserRemoteDataSource.authenticate(any, any))
           .thenAnswer((realInvocation) async => tAuthUserModel);
 
+      when(mockAuthUserLocalDataSource.cache(any))
+          .thenAnswer((realInvocation) async => true);
+
       final result = await repository.authenticate(email, password);
 
       verify(mockAuthUserRemoteDataSource.authenticate(email, password));
@@ -64,5 +67,35 @@ void main() {
 
       expect(result, Left(NetworkFailure()));
     });
+  });
+
+  group("getCache", () {
+    final tAuthUserModel = AuthUserModel(token: "token");
+    final tAuthUser = tAuthUserModel;
+
+    test(
+      'should return last locally cached data when the cached data '
+      'is present',
+      () async {
+        when(mockAuthUserLocalDataSource.get())
+            .thenAnswer((realInvocation) async => tAuthUserModel);
+
+        final result = await repository.getCache();
+
+        verify(mockAuthUserLocalDataSource.get());
+        expect(result, Right(tAuthUser));
+      },
+    );
+
+    test(
+      "should return a CacheException when the cached data is not present",
+      () async {
+        when(mockAuthUserLocalDataSource.get()).thenThrow(CacheException());
+
+        final result = await repository.getCache();
+
+        expect(result, Left(CacheFailure()));
+      },
+    );
   });
 }

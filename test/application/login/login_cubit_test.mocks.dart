@@ -9,6 +9,7 @@ import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_sou
     as _i2;
 import 'package:learning_app/data/datasources/auth_user/auth_user_remote_data_source.dart'
     as _i3;
+import 'package:learning_app/data/model/auth_user_model.dart' as _i9;
 import 'package:learning_app/domain/core/error/failures.dart' as _i7;
 import 'package:learning_app/domain/entities/auth_user.dart' as _i8;
 import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.dart'
@@ -60,4 +61,18 @@ class MockAuthUserRepository extends _i1.Mock
               returnValue:
                   Future.value(_FakeEither<_i7.Failure, _i8.AuthUser>()))
           as _i6.Future<_i4.Either<_i7.Failure, _i8.AuthUser>>);
+  @override
+  _i6.Future<_i4.Either<_i7.Failure, _i8.AuthUser>> getCache() =>
+      (super.noSuchMethod(Invocation.method(#getCache, []),
+              returnValue:
+                  Future.value(_FakeEither<_i7.Failure, _i8.AuthUser>()))
+          as _i6.Future<_i4.Either<_i7.Failure, _i8.AuthUser>>);
+  @override
+  _i6.Future<bool> removeCache() =>
+      (super.noSuchMethod(Invocation.method(#removeCache, []),
+          returnValue: Future.value(false)) as _i6.Future<bool>);
+  @override
+  _i6.Future<bool> saveCache(_i9.AuthUserModel? authUser) =>
+      (super.noSuchMethod(Invocation.method(#saveCache, [authUser]),
+          returnValue: Future.value(false)) as _i6.Future<bool>);
 }

@@ -24,7 +24,7 @@ class AuthUserRepository {
     try {
       final result = await remoteDataSource.authenticate(email, password);
 
-      saveCache(result);
+      this.saveCache(result);
 
       return Right(result);
     } on ServerException {

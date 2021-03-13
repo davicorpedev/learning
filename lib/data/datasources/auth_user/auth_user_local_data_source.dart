@@ -11,7 +11,7 @@ class AuthUserLocalDataSource {
 
   AuthUserLocalDataSource({required this.sharedPreferences});
 
-  Future<AuthUserModel> getUser() {
+  Future<AuthUserModel> get() {
     final jsonString = sharedPreferences.getString(CACHED_USER);
     if (jsonString != null) {
       return Future.value(AuthUserModel.fromJson(json.decode(jsonString)));
@@ -20,11 +20,11 @@ class AuthUserLocalDataSource {
     }
   }
 
-  Future<bool> removeUser() async {
+  Future<bool> remove() async {
     return sharedPreferences.remove(CACHED_USER);
   }
 
-  Future<bool> cacheUser(AuthUserModel authUser) async {
+  Future<bool> cache(AuthUserModel authUser) async {
     return sharedPreferences.setString(
       CACHED_USER,
       json.encode(authUser.toJson()),

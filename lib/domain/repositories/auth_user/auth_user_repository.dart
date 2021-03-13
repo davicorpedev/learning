@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:learning_app/data/core/error/exceptions.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_source.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_remote_data_source.dart';
+import 'package:learning_app/data/model/auth_user_model.dart';
 import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:learning_app/domain/entities/auth_user.dart';
 
@@ -23,7 +24,7 @@ class AuthUserRepository {
     try {
       final result = await remoteDataSource.authenticate(email, password);
 
-      localDataSource.cacheUser(result);
+      saveCache(result);
 
       return Right(result);
     } on ServerException {
@@ -33,9 +34,9 @@ class AuthUserRepository {
     }
   }
 
-  Future<Either<Failure, AuthUser>> getUser() async {
+  Future<Either<Failure, AuthUser>> getCache() async {
     try {
-      final result = await localDataSource.getUser();
+      final result = await localDataSource.get();
 
       return Right(result);
     } on CacheException {
@@ -43,13 +44,11 @@ class AuthUserRepository {
     }
   }
 
-  Future<Either<Failure, bool>> removeUser() async {
-    try {
-      final result = await localDataSource.removeUser();
+  Future<bool> removeCache() async {
+    return await localDataSource.remove();
+  }
 
-      return Right(result);
-    } on CacheException {
-      return Left(CacheFailure());
-    }
+  Future<bool> saveCache(AuthUserModel authUser) async {
+    return await localDataSource.cache(authUser);
   }
 }

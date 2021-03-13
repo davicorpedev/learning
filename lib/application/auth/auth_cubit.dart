@@ -16,13 +16,13 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> removeUser() async {
-    authUserRepository.removeUser();
+    await authUserRepository.removeCache();
 
     emit(UserLoggedOut());
   }
 
   Future<void> getUser() async {
-    final authUser = await authUserRepository.getUser();
+    final authUser = await authUserRepository.getCache();
 
     authUser.fold(
       (error) {},

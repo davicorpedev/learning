@@ -74,8 +74,7 @@ void main() {
     final tAuthUser = tAuthUserModel;
 
     test(
-      'should return last locally cached data when the cached data '
-      'is present',
+      'should return an AuthUser data when the cached data is present',
       () async {
         when(mockAuthUserLocalDataSource.get())
             .thenAnswer((realInvocation) async => tAuthUserModel);
@@ -88,7 +87,7 @@ void main() {
     );
 
     test(
-      "should return a CacheException when the cached data is not present",
+      "should return a CacheFailure when the cached data is not present",
       () async {
         when(mockAuthUserLocalDataSource.get()).thenThrow(CacheException());
 

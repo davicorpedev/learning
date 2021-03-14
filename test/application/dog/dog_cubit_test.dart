@@ -36,7 +36,7 @@ void main() {
           .thenAnswer((realInvocation) async => Right(tDog));
 
       when(mockExtensionChecker.check(any))
-          .thenAnswer((realInvocation) async => Type.image);
+          .thenAnswer((realInvocation) async => Right(ExtensionType.image));
 
       final expected = [
         DogLoading(),
@@ -55,7 +55,7 @@ void main() {
           .thenAnswer((realInvocation) async => Right(tDog));
 
       when(mockExtensionChecker.check(any))
-          .thenAnswer((realInvocation) async => Type.video);
+          .thenAnswer((realInvocation) async => Right(ExtensionType.video));
 
       final expected = [
         DogLoading(),
@@ -73,12 +73,12 @@ void main() {
       when(mockDogRepository.getRandomDog())
           .thenAnswer((realInvocation) async => Right(tDog));
 
-      when(mockExtensionChecker.check(any))
-          .thenAnswer((realInvocation) async => Type.unknown);
+      when(mockExtensionChecker.check(any)).thenAnswer(
+          (realInvocation) async => Left(UnknownExtensionFailure()));
 
       final expected = [
         DogLoading(),
-        DogError(message: MEDIA_FAILURE_MESSAGE),
+        DogError(message: mapFailureToMessage(UnknownExtensionFailure())),
       ];
 
       expectLater(cubit, emitsInOrder(expected));

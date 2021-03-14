@@ -13,6 +13,9 @@ class MediaLoaded extends MediaState {
   final File file;
 
   MediaLoaded({required this.file});
+
+  @override
+  List<Object> get props => [file];
 }
 
 class ImageLoaded extends MediaLoaded {
@@ -22,5 +25,3 @@ class ImageLoaded extends MediaLoaded {
 class VideoLoaded extends MediaLoaded {
   VideoLoaded({required File file}) : super(file: file);
 }
-
-//class MediaNotLoaded extends MediaState {}

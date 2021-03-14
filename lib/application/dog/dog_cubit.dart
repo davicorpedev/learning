@@ -24,15 +24,20 @@ class DogCubit extends Cubit<DogState> {
         emit(DogError(message: mapFailureToMessage(failure)));
       },
       (dog) async {
-        final type = await extensionChecker.check(dog.url);
+        final result = await extensionChecker.check(dog.url);
 
-        if (type == Type.image) {
-          emit(DogImageLoaded(dog: dog));
-        } else if (type == Type.video) {
-          emit(DogVideoLoaded(dog: dog));
-        } else {
-          emit(DogError(message: MEDIA_FAILURE_MESSAGE));
-        }
+        result.fold(
+          (failure) {
+            emit(DogError(message: mapFailureToMessage(failure)));
+          },
+          (type) {
+            if (type == ExtensionType.image) {
+              emit(DogImageLoaded(dog: dog));
+            } else if (type == ExtensionType.video) {
+              emit(DogVideoLoaded(dog: dog));
+            }
+          },
+        );
       },
     );
   }

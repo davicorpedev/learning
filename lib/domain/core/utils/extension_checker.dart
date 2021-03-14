@@ -1,20 +1,26 @@
+import 'package:dartz/dartz.dart';
+import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:mime/mime.dart';
 
-enum Type { image, video, unknown }
+enum ExtensionType { image, video }
 
 class ExtensionChecker {
-  Future<Type> check(String url) async {
-    final String? type = lookupMimeType(url);
+  String? getType(String source) {
+    return lookupMimeType(source);
+  }
+
+  Future<Either<Failure, ExtensionType>> check(String source) async {
+    final String? type = getType(source);
 
     if (type == null) {
-      return Type.unknown;
+      return Left(UnknownExtensionFailure());
     } else {
       if (type.contains("image")) {
-        return Type.image;
+        return Right(ExtensionType.image);
       } else if (type.contains("video")) {
-        return Type.video;
+        return Right(ExtensionType.video);
       } else {
-        return Type.unknown;
+        return Left(UnknownExtensionFailure());
       }
     }
   }

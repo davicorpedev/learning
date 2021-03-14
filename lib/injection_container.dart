@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:learning_app/application/auth/auth_cubit.dart';
 import 'package:learning_app/application/dog/dog_cubit.dart';
 import 'package:learning_app/application/login/form/login_form_cubit.dart';
@@ -8,11 +9,12 @@ import 'package:learning_app/application/media/media_cubit.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_source.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_remote_data_source.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
+import 'package:learning_app/domain/core/utils/extension_checker.dart';
+import 'package:learning_app/domain/core/utils/media/image_handler.dart';
+import 'package:learning_app/domain/core/utils/media/video_handler.dart';
 import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.dart';
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'domain/core/utils/extension_checker.dart';
 
 final sl = GetIt.instance;
 
@@ -60,7 +62,12 @@ Future<void> init() async {
 
   ///Media
   //Cubit
-  sl.registerFactory<MediaCubit>(() => MediaCubit());
+  sl.registerFactory<MediaCubit>(
+      () => MediaCubit(imageHandler: sl(), videoHandler: sl()));
+
+  //Repositories
+  sl.registerLazySingleton<ImageHandler>(() => ImageHandler(picker: sl()));
+  sl.registerLazySingleton<VideoHandler>(() => VideoHandler(picker: sl()));
 
   ///Extension checker
   sl.registerLazySingleton<ExtensionChecker>(() => ExtensionChecker());
@@ -70,4 +77,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => sharedPreferences);
 
   sl.registerLazySingleton(() => http.Client());
+  sl.registerLazySingleton(() => ImagePicker());
 }

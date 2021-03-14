@@ -48,7 +48,9 @@ class MockExtensionChecker extends _i1.Mock implements _i8.ExtensionChecker {
   }
 
   @override
-  _i5.Future<_i8.Type> check(String? url) =>
+  _i5.Future<_i3.Either<_i6.Failure, _i8.ExtensionType>> check(String? url) =>
       (super.noSuchMethod(Invocation.method(#check, [url]),
-          returnValue: Future.value(_i8.Type.image)) as _i5.Future<_i8.Type>);
+              returnValue:
+                  Future.value(_FakeEither<_i6.Failure, _i8.ExtensionType>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i8.ExtensionType>>);
 }

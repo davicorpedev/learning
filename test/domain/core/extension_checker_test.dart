@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:learning_app/domain/core/error/failures.dart';
 import 'package:learning_app/domain/core/utils/extension_checker.dart';
 
 void main() {
@@ -15,7 +17,7 @@ void main() {
 
       final result = await extensionChecker.check(url);
 
-      expect(result, Type.image);
+      expect(result, Right(ExtensionType.image));
     });
 
     test("should return Type.video when the extension is from a video",
@@ -24,7 +26,7 @@ void main() {
 
       final result = await extensionChecker.check(url);
 
-      expect(result, Type.video);
+      expect(result, Right(ExtensionType.video));
     });
 
     test(
@@ -34,7 +36,7 @@ void main() {
 
       final result = await extensionChecker.check(url);
 
-      expect(result, Type.unknown);
+      expect(result, Left(UnknownExtensionFailure()));
     });
   });
 }

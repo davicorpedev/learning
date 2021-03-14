@@ -11,7 +11,7 @@ class AuthUserLocalDataSource {
 
   AuthUserLocalDataSource({required this.sharedPreferences});
 
-  Future<AuthUserModel> get() async{
+  Future<AuthUserModel> get() async {
     final jsonString = sharedPreferences.getString(CACHED_USER);
     if (jsonString != null) {
       return AuthUserModel.fromJson(json.decode(jsonString));

@@ -11,7 +11,7 @@ class MyPainter extends CustomPainter {
     var firstEndPoint = new Offset(size.width / 2, size.height / 3 - 60);
 
     var secondControlPoint =
-    new Offset(size.width - (size.width / 4), size.height / 4 - 65);
+        new Offset(size.width - (size.width / 4), size.height / 4 - 65);
     var secondEndPoint = new Offset(size.width, size.height / 3 - 40);
 
     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,

@@ -3,16 +3,20 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_app/domain/core/utils/mixin/handle_image.dart';
-import 'package:learning_app/domain/core/utils/mixin/handle_video.dart';
+import 'package:learning_app/domain/core/utils/media/image_handler.dart';
+import 'package:learning_app/domain/core/utils/media/video_handler.dart';
 
 part 'media_state.dart';
 
-class MediaCubit extends Cubit<MediaState> with HandleImage, HandleVideo {
-  MediaCubit() : super(MediaInitial());
+class MediaCubit extends Cubit<MediaState> {
+  final ImageHandler imageHandler;
+  final VideoHandler videoHandler;
+
+  MediaCubit({required this.imageHandler, required this.videoHandler})
+      : super(MediaInitial());
 
   Future<void> getImage(BuildContext context) async {
-    final result = await imagePickerDialog(context);
+    final result = await imageHandler.showPickerDialog(context);
 
     if (result != null) {
       emit(ImageLoaded(file: result));
@@ -20,7 +24,7 @@ class MediaCubit extends Cubit<MediaState> with HandleImage, HandleVideo {
   }
 
   Future<void> getVideo(BuildContext context) async {
-    final result = await videoPickerDialog(context);
+    final result = await videoHandler.showPickerDialog(context);
 
     if (result != null) {
       emit(VideoLoaded(file: result));

@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:learning_app/domain/core/extension_checker.dart';
-import 'package:mime/mime.dart';
-import 'package:mockito/mockito.dart';
+import 'package:learning_app/domain/core/utils/extension_checker.dart';
 
 void main() {
   late ExtensionChecker extensionChecker;
@@ -32,7 +30,6 @@ void main() {
     test(
         "should return Type.unknown when the extension is NOT"
         "from a video or image", () async {
-
       final url = "test.test";
 
       final result = await extensionChecker.check(url);

@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart' as _i2;
 import 'package:learning_app/domain/core/error/failures.dart' as _i6;
-import 'package:learning_app/domain/core/extension_checker.dart' as _i8;
+import 'package:learning_app/domain/core/utils/extension_checker.dart' as _i8;
 import 'package:learning_app/domain/entities/dog.dart' as _i7;
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart'
     as _i4;

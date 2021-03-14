@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:learning_app/application/dog/dog_cubit.dart';
 import 'package:learning_app/domain/core/error/failures.dart';
-import 'package:learning_app/domain/core/extension_checker.dart';
+import 'package:learning_app/domain/core/utils/extension_checker.dart';
 import 'package:learning_app/domain/entities/dog.dart';
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
 import 'package:mockito/annotations.dart';

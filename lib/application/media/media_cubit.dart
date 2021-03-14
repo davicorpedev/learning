@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_app/presentation/core/utils/mixin/handle_image.dart';
-import 'package:learning_app/presentation/core/utils/mixin/handle_video.dart';
+import 'package:learning_app/domain/core/utils/mixin/handle_image.dart';
+import 'package:learning_app/domain/core/utils/mixin/handle_video.dart';
 
 part 'media_state.dart';
 

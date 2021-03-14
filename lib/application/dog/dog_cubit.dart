@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:learning_app/domain/core/error/failures.dart';
-import 'package:learning_app/domain/core/extension_checker.dart';
+import 'package:learning_app/domain/core/utils/extension_checker.dart';
 import 'package:learning_app/domain/entities/dog.dart';
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
 

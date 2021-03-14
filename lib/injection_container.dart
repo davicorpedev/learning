@@ -8,10 +8,11 @@ import 'package:learning_app/application/media/media_cubit.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_local_data_source.dart';
 import 'package:learning_app/data/datasources/auth_user/auth_user_remote_data_source.dart';
 import 'package:learning_app/data/datasources/dog/dog_data_source.dart';
-import 'package:learning_app/domain/core/extension_checker.dart';
 import 'package:learning_app/domain/repositories/auth_user/auth_user_repository.dart';
 import 'package:learning_app/domain/repositories/dog/dog_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'domain/core/utils/extension_checker.dart';
 
 final sl = GetIt.instance;
 
